@@ -10,18 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_20_235408) do
+ActiveRecord::Schema.define(version: 2022_11_10_020324) do
 
   create_table "catagories", force: :cascade do |t|
     t.string "name"
+    t.integer "product_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "amount"
+    t.integer "user_id"
+    t.integer "collection_of_products"
+    t.string "status"
+  end
+
+  create_table "orders_products", id: false, force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "product_id", null: false
+    t.integer "quantity"
+    t.index ["order_id"], name: "index_orders_products_on_order_id"
+    t.index ["product_id"], name: "index_orders_products_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.integer "price"
-    t.integer "likes"
+    t.text "description"
+    t.integer "inventory"
+    t.string "img_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -29,7 +47,10 @@ ActiveRecord::Schema.define(version: 2022_09_20_235408) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
-    t.string "uid"
+    t.string "password_digest"
+    t.string "provider"
+    t.string "address"
+    t.integer "credit_card"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
