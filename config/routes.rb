@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :catagories
   resources :products
   resources :users
+  resources :orders, only: [:index, :show, :create, :update]
 
   resources :catagories do 
     resources :products
@@ -16,5 +17,6 @@ Rails.application.routes.draw do
   resources :user do 
     resources :products, only:[:index, :show]
     resource :catagories, only:[:index, :show]
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

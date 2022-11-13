@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-    before_action :set_product, only: [:show]
+    before_action :set_product, only: [:show, :index, :update]
 
     def index 
         products = Product.all
@@ -11,6 +11,15 @@ class ProductsController < ApplicationController
         product = Product.find_by_id(params[:id])
         render json: product
     end
+
+    def update 
+        product = Product.find_by(id:params[:id])
+        if product
+            render json: product
+        else
+            render json: {error: "Product not avalible"}, status: :not_found
+        end
+    end 
 
 
     private 
