@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
 
     def create 
         order = Order.create(order_params)
-        render json: order, status :placed
+        render json: order, status: placed
 
     end
 
