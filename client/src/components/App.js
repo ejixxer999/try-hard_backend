@@ -1,6 +1,6 @@
 
-import { Route, Routes } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import React, { useEffect, useState } from "react"
 import NavBar from "./NavBar"
 import Home from "./Home"
 import Shop from "./Shop"
@@ -16,30 +16,24 @@ function App() {
     const fetchProducts = async () => {
       const response = await fetch('http://localhost:3000/products')
       const data = await response.json()
-      setProducts(data)
+      setProducts(data) 
     }
     fetchProducts()
   }, [])
   return (
-    <div id="nav a">
-      <NavBar />
+    <BrowserRouter>
+     <NavBar />
+
       <Routes>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/shop">
-          <Shop />
-        </Route>
-        <Route exact path="/cart">
-          <Cart />
-        </Route>
-        <Route exact path="/contact">
-          <Contact />
-        </Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/shop" element={<Shop products={ products } />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
+      <Cart />
+    </BrowserRouter>
       
-    </div>
-  )
+  );
 }
 
 export default App;
