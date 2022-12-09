@@ -5,6 +5,7 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 
 
+
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement)
 
@@ -12,9 +13,9 @@ root.render(
   <StrictMode>
     
       <App />
-    
+   
   </StrictMode>,
-  document.getElementById('root')
+  
 );
 
 
