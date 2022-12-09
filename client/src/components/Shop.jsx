@@ -1,9 +1,28 @@
-import React from 'react'
 
-function Shop() {
+import ProductCard from "./ProductCard"
+import ListItem from '@material-ui/core/ListItem'
+
+
+
+function Shop({ products }) {
+ 
+  const productCards = products.map(product => 
+    <ProductCard key={ product.id } product={ product } />
+    )
+    
+    
   return (
-    <div>Shop</div>
+    
+      <ListItem>
+
+         { productCards } 
+         
+      </ListItem>
+    
+    
+  
   )
+  
 }
 
 export default Shop
