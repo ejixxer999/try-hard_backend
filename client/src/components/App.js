@@ -1,11 +1,15 @@
 
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import React, { useEffect, useState } from "react"
-import NavBar from "./NavBar"
+import NavBar from "./NavBar/NavBar"
 import Home from "./Home"
 import Shop from "./Shop"
 import Contact from "./Contact"
 import Cart from "./Cart"
+import Banner from "./Banner/Banner"
+import News from "./news"
+
+
 
 
 function App() {
@@ -21,9 +25,11 @@ function App() {
     fetchProducts()
   }, [])
   return (
+    
     <BrowserRouter>
      <NavBar />
-
+     <Banner />
+     <News />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop products={ products } />} />
@@ -32,6 +38,7 @@ function App() {
       </Routes>
       <Cart />
     </BrowserRouter>
+    
       
   );
 }
