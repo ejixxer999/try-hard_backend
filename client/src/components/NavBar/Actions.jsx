@@ -1,9 +1,11 @@
-import { ListItemButton, ListItemIcon } from "@mui/material"
+import { Badge, ListItemButton, ListItemIcon } from "@mui/material"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import PersonIcon from "@mui/icons-material/Person"
 import { TheList } from "../../styles/Nav"
+import { useUIContext } from "../../context/context"
 
 export default function Actions() {
+    const { cart, setShowCart } = useUIContext()
     return (
         
 
@@ -20,7 +22,9 @@ export default function Actions() {
                     justifyContent: 'center'
                 }}
                 >
-                    <ShoppingCartIcon />
+                    <Badge badgeContent={cart && cart.length}>
+                    <ShoppingCartIcon onClick={() => setShowCart(true)} />
+                    </Badge>
                 </ListItemIcon>
             </ListItemButton>
             <ListItemButton

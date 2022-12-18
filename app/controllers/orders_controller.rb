@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
 
     def create 
         order = Order.create(order_params)
-        render json: order, status: placed
+        render json: order, status: :created
 
     end
 
@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
     private
 
     def order_params
-        params.permit(:amount, :user_id, :collection_of_products, :status)
+        params.permit(:amount, product_ids: [], :user_id => () )
     end
 
 end 

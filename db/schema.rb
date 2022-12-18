@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_10_020324) do
+ActiveRecord::Schema.define(version: 2022_12_14_015144) do
 
   create_table "catagories", force: :cascade do |t|
     t.string "name"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2022_11_10_020324) do
   create_table "orders", force: :cascade do |t|
     t.integer "amount"
     t.integer "user_id"
-    t.integer "collection_of_products"
     t.string "status"
   end
 

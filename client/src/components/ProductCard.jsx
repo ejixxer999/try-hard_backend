@@ -1,18 +1,27 @@
+import { Stack } from '@mui/material'
 import React from 'react'
 import { useMatch } from "react-router-dom"
-import ListItem from '@material-ui/core/ListItem'
-import { ListItemText } from '@material-ui/core'
+import useCart from '../hooks/useCart'
+import { Product, ProductAddToCart, ProductImage  } from '../styles/products'
+import  ProductData  from "./ProductData"
+
 
 function ProductCard({ product }) {
     const match = useMatch("product/:productId")
-    console.log(match)
-debugger;
+    const { addToCart, addToCartText } = useCart(product)
+
+
+
     return(
-        <div>
-            <ListItem button>
-                <ListItemText primary={ product.name } secondary={ product.price } />
-            </ListItem>
-        </div>
+      <>
+      <Product>
+        <ProductImage src={product.img_url} />
+        <ProductData product={product} />
+      </Product>
+      <ProductAddToCart 
+      onClick={addToCart}
+      variant="contained">{addToCartText}</ProductAddToCart>
+      </>
     )
 }
 

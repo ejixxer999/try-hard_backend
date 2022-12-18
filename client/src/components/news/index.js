@@ -5,10 +5,10 @@ import { Messages, NewsContainer } from "../../styles/News";
 
 
 const messages = [
-    "This is where all of the announments to the customers will go",
-    "dates we are open or closed",
-    "new products we are selling",
-    "discounts and sales"
+    "EveryBody Clap Your Hands",
+    "SLIDE THE RIGHT",
+    "GRAND OPEINING!!",
+    "10% OFF Winter sale!!"
 ]
 
 function News() {

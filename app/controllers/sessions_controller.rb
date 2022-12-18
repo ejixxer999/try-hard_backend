@@ -2,11 +2,27 @@ class SessionsController < ApplicationController
 
     def create
         user = User.find_by(username: params[:user][:username])
-        if user && user.authenticate(params[:user][:password])
+        if @user && @user.authenticate(params[:user][:password])
             session[:user_id] = user.id
+            render json: {
+                logged_in: true,
+                user: @user
+            }
         else
-            redirect_to "/"
+            render json: {
+                status: 401, 
+                errors: ['user not found']
+            }
         end
+    end
+
+    def create_oauth
+        auth = request.env['omniauth.auth']
+        user = User.find_or_create_by(email: auth.info.email)
+        token = JWT.encode({ user_id: user.id }, 
+        Rails.application.secrets.secret_key_base, 'HS256')
+        
+        render json: { token: token }
     end
 
     def google_login
@@ -22,9 +38,16 @@ class SessionsController < ApplicationController
 
     end 
 
-    def destroy
-        logout
-        redirect_to '/'
-    end 
+    #def destroy
+     #   logout
+     #   redirect_to '/'
+   # end 
+   def destroy
+    # Invalidate the JWT by clearing the `user_id` from the payload
+    payload = JWT.decode(request.headers['Authorization'], Rails.application.secrets.secret_key_base, true, algorithm: 'HS256')
+    payload[0]['user_id'] = nil
+
+    # Render an empty JSON object
+    render json: {}
 
 end

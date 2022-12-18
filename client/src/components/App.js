@@ -8,24 +8,30 @@ import Contact from "./Contact"
 import Cart from "./Cart"
 import Banner from "./Banner/Banner"
 import News from "./news"
+import axios from 'axios';
+
+import { UIProvider } from '../context/context'
 
 
 
 
 function App() {
   const [products, setProducts] = useState([])
+  const API_BASE_URL = 'http://localhost:3000'
+  
 
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await fetch('http://localhost:3000/products')
+      const response = await fetch(`${API_BASE_URL}/products`)
       const data = await response.json()
       setProducts(data) 
     }
     fetchProducts()
   }, [])
   return (
-    
+    <UIProvider>
+
     <BrowserRouter>
      <NavBar />
      <Banner />
@@ -38,6 +44,7 @@ function App() {
       </Routes>
       <Cart />
     </BrowserRouter>
+    </UIProvider>
     
       
   );
