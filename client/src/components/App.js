@@ -4,8 +4,6 @@ import NavBar from "./NavBar/NavBar";
 import Home from "./Home";
 import Shop from "./Shop";
 import Contact from "./Contact";
-import Banner from "./Banner/Banner";
-import News from "./news";
 import Cart from "./cart";
 import Login from "./Login"
 import LogoutPage from "./LogoutPage";
@@ -34,8 +32,6 @@ function App() {
       <ToastContainer />
       <BrowserRouter>
         <NavBar />
-        <Banner />
-        <News />
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/shop" element={<Shop products={products} />} />

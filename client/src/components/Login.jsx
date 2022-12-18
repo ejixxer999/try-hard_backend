@@ -64,9 +64,9 @@ export default function Login() {
             <button type="submit" className='btn btn-primary'>Login</button>
         </div>
       </form>
-      <div>
+      <div className='text-center'>
         Don't have an account?
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink to="/register">Sign Up</NavLink>
       </div>
       <br />
       <br />
