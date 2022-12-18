@@ -1,18 +1,12 @@
 class SessionsController < ApplicationController
 
     def create
-        user = User.find_by(username: params[:user][:username])
-        if @user && @user.authenticate(params[:user][:password])
-            session[:user_id] = user.id
-            render json: {
-                logged_in: true,
-                user: @user
-            }
+        @user = User.find_by(username: user_login_params[:username])
+        if @user && @user.authenticate(user_login_params[:password])
+            @token = generate_token(@user)
+            render json:  {user: @user, jwt: @token }, status: :created
         else
-            render json: {
-                status: 401, 
-                errors: ['user not found']
-            }
+          render json: {error: true, message: 'That user could not be found'}, status: 401
         end
     end
 
@@ -49,5 +43,10 @@ class SessionsController < ApplicationController
 
     # Render an empty JSON object
     render json: {}
+   end
 
+   private
+   def user_login_params
+     params.require(:user).permit(:username, :password)
+   end
 end

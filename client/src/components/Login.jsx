@@ -1,62 +1,75 @@
-import React from "react";
-import { GoogleAPI, GoogleLogin, GoogleLogout } from "react-google-oauth"
+import React, { useState } from 'react';
+import { useNavigate, NavLink } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useUIContext } from "../context/context";
+import { Form } from 'react-bootstrap';
 
-function Login() {
+export default function Login() {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const {setCurrentUser, setUserToken } = useUIContext()
 
-
-    const responseGoogle = (response) => {
-        console.log(response)
-        var token = response
-        var data = {
-            provider: "google_oauth2",
-            uid: token.Ca,
-            id_token: response.wc.id_token,
-            info: {
-                email: token.nt.Wt
-            }
+  const handleLogin = (user) => {
+    axios
+      .post("/login", {
+        user: user,
+      })
+      .then(
+        (res) => {
+          if(res.status === 201) {
+            setCurrentUser(res.data.user)
+            setUserToken(res.data.token)
+            navigate('/')
+            toast.success(`Successfully logged in`)
+          } else {
+            toast.error(`Error!!! ${res.data.message}`)
+          }
         }
-    }
+      ).catch((error) => {
+        toast.error(`Error!!! ${error}`)
+      });
+  }
 
-    console.log(data)
-    const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${response.wc.access_token}`,
-            'Content-Type': 'application/json',
-            'access_token': `${response.wc.access_token}`
-        },
-        body: JSON.stringify(data)
-    }
+  return (
+    <div>
+        <h1 className="text-center my-1">Login Now</h1>
+      <form className='form w-50 mx-auto' onSubmit={(e) => { e.preventDefault(); handleLogin({username, password }); e.target.reset(); } }>
+        <br />
 
-    return fetch(requestOptions)
-    .then(response => response.json())
-    .then(response => {
-        console.log(response, "Backend")
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            placeholder="Username"
+            value={username}
+            className="form-control"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </Form.Group>
 
-    })
-   
-    
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            placeholder="Password"
+            value={password}
+            type="password"
+            className="form-control"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Form.Group>
 
-    return(
-        <div>
-
-        <GoogleAPI clientId={CLIENT_ID}>
-            <div>
-                <GoogleLogin
-                height="10"
-                width="500px"
-                backgroundColor="#4285f4"
-                access="offline"
-                scope="email profile"
-                onLoginSuccess={responseGoogle}
-                onFailure={responseGoogle} />
-            </div>
-        </GoogleAPI>
-
-
+       
+        <div className='text-center'>
+            <button type="submit" className='btn btn-primary'>Login</button>
         </div>
-    )
-
+      </form>
+      <div>
+        Don't have an account?
+        <NavLink to="/signup">Sign Up</NavLink>
+      </div>
+      <br />
+      <br />
+    </div>
+  )
 }
-
-export default Login;

@@ -8,14 +8,30 @@ export const UIProvider = ({ children }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [cart, setCart] = useState([])
     const [showCart, setShowCart] = useState(false)
+    const [currentUser, setCurrentUserState] = useState(JSON.parse(localStorage.getItem('user')||{}));
+    const [userToken, setUserTokenState] = useState(localStorage.getItem('token'));
+    
 
+    const setCurrentUser = (user) => {
+        setCurrentUserState(user)
+        localStorage.setItem('user', JSON.stringify(user))
+    }
+
+    const setUserToken = (token) => {
+        setUserTokenState(token)
+        localStorage.setItem('token', token)
+    }
     const value = {
         drawerOpen,
         setDrawerOpen,
         setCart,
         cart,
         setShowCart,
-        showCart
+        showCart,
+        userToken,
+        setUserToken,
+        currentUser,
+        setCurrentUser
     }
 
     return <UIContext.Provider value={value} >{children}</UIContext.Provider>
