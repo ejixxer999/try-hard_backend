@@ -88,11 +88,11 @@ function Cart() {
         </Box>
         <Box
           splay="flex"
-          sflexDirection={"column"}
+          flexDirection={"column"}
           alignContent={"center"}
           className="h-100"
         >
-          <Typography variant="body1" di>
+          <Typography variant="body1">
             ${item.price}
           </Typography>
         </Box>
