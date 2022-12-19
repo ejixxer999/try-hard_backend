@@ -130,6 +130,10 @@ function Cart() {
     >
       <h1>My cart</h1>
       {cartContent}
+      <div className="">
+        Total Amount: &nbsp;&nbsp;
+        <b>${cart.reduce((sum, item) => sum + item.price * item.quantity, 0)}</b>
+      </div>
       <Button sx={{ mt: 4 }} variant="contained" onClick={createOrder}>
         CheckOut
       </Button>
