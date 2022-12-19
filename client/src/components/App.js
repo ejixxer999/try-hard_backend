@@ -15,17 +15,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const [products, setProducts] = useState([]);
-  const API_BASE_URL = "http://localhost:3000";
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await fetch(`${API_BASE_URL}/products`);
-      const data = await response.json();
-      setProducts(data);
-    };
-    fetchProducts();
-  }, []);
+  
 
   return (
     <UIProvider>
@@ -34,7 +24,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/shop" element={<Shop products={products} />} />
+          <Route path="/shop" element={<Shop />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />

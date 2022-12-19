@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+    before_action :authenticate_user
     def new
         @order = Order.new
     end
@@ -18,9 +19,8 @@ class OrdersController < ApplicationController
     end 
 
     def create 
-        order = Order.create(order_params)
-        render json: order, status: :created
-
+        @order = @current_user.orders.create!(order_params)
+        render json: @order, status: :created
     end
 
     def update
@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
     private
 
     def order_params
-        params.permit(:amount, product_ids: [], :user_id => () )
+        params.require(:order).permit(:amount, :orders_products_attributes => [:product_id])
     end
 
 end 

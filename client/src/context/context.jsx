@@ -8,7 +8,7 @@ export const UIProvider = ({ children }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [cart, setCart] = useState([])
     const [showCart, setShowCart] = useState(false)
-    const [currentUser, setCurrentUserState] = useState(JSON.parse(localStorage.getItem('user')||{}));
+    const [currentUser, setCurrentUserState] = useState(JSON.parse(localStorage.getItem('user')));
     const [userToken, setUserTokenState] = useState(localStorage.getItem('token'));
     
 

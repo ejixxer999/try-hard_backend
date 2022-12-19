@@ -20,7 +20,7 @@ export default function Login() {
         (res) => {
           if(res.status === 201) {
             setCurrentUser(res.data.user)
-            setUserToken(res.data.token)
+            setUserToken(res.data.jwt)
             navigate('/')
             toast.success(`Successfully logged in`)
           } else {

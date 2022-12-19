@@ -8,7 +8,7 @@ import  ProductData  from "./ProductData"
 
 function ProductCard({ product }) {
     const match = useMatch("product/:productId")
-    const { addToCart, addToCartText } = useCart(product)
+    const { addToCart, addToCartText } = useCart({...product, quantity: 1})
 
 
 
