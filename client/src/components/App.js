@@ -8,7 +8,6 @@ import Cart from "./cart";
 import Login from "./Login"
 import LogoutPage from "./LogoutPage";
 import Register from "./Register";
-
 import { UIProvider } from "../context/context";
 import { ToastContainer } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";

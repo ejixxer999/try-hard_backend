@@ -61,6 +61,7 @@ class ProductOrdersController < ApplicationController
 
     def po_params
         params.require(:product_order).permit(product_ids: [], :order_id, :quantity)
+    end
 
 
 end
