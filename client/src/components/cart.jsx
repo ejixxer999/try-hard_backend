@@ -19,7 +19,7 @@ function Cart() {
       return;
     }
 
-    if(cart.length == 0) {
+    if(cart.length === 0) {
       toast.warn("Please add something in cart");
       return;
     }
