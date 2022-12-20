@@ -11,12 +11,19 @@ function Cart() {
   const { cart, setCart, setShowCart, showCart } = useUIContext();
   const { userToken } = useUIContext();
 
-  if (!userToken) {
-    toast.warn("Please login to continue");
-    nav("/login");
-  }
 
   const createOrder = () => {
+    if (!userToken) {
+      toast.warn("Please login to continue");
+      nav("/login");
+      return;
+    }
+
+    if(cart.length == 0) {
+      toast.warn("Please add something in cart");
+      return;
+    }
+
     axios
       .post(
         "/orders",
@@ -81,11 +88,11 @@ function Cart() {
         </Box>
         <Box
           splay="flex"
-          sflexDirection={"column"}
+          flexDirection={"column"}
           alignContent={"center"}
           className="h-100"
         >
-          <Typography variant="body1" di>
+          <Typography variant="body1">
             ${item.price}
           </Typography>
         </Box>
