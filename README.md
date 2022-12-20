@@ -1,24 +1,34 @@
-# README
+# FreshLookDetails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Things you may want to cover:
+## Description
+Fresh looks is a project designed for a small business. It servers as a pre-cursor for what the offical site will look like, and the ability new clients will have by booking online.
 
-* Ruby version
+## Features 
+A few of this react apps features include 
+* Being able to place orders from the shop 
+* view products that are currently available 
+* Create an account for membership
+## Installation
+From github fork and clone the repository 'github.com/ejixxer999/try-hard_backend' 
 
-* System dependencies
+Run 'npm install' from within the client folder to install front-end dependencies 
 
-* Configuration
+Run 'Bundle' from the root folder to install the rails-api gems used
 
-* Database creation
 
-* Database initialization
+>**For full styling effects also install MUI V5 library from 'mui.com'**
 
-* How to run the test suite
+* Front-end: run 'npm start' 
+* Back-end: run ' rails s'
 
-* Services (job queues, cache servers, search engines, etc.)
+## Roadmap
+future features to be realeased are 
+* A detailed view of each product
+* Ability to view comments and likes directly from the product show page
+* E-mail confirmation from contact us page
+* Booking details from site
 
-* Deployment instructions
-
-* ...
+## Authors
+Ejixxer999
