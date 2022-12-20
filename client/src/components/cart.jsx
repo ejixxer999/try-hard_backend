@@ -30,7 +30,7 @@ function Cart() {
         {
           order: {
             orders_products_attributes: cart.map((po) => {
-              return { product_id: po.id };
+              return { product_id: po.id, quantity: po.quantity };
             }),
             amount: cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
           },

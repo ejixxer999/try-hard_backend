@@ -7,7 +7,7 @@ import { useUIContext } from '../../context/context';
 
 
 const NavBar = () => {
-    const {currentUser, cart, userToken} = useUIContext()
+    const {currentUser} = useUIContext()
     return (
       <NavbarContainer>
         <NavbarHeader>
