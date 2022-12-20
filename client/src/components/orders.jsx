@@ -10,10 +10,16 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import { useNavigate } from "react-router-dom";
 
 const Orders = () => {
   const {userToken} = useUIContext()
   const [orders, setOrders] = React.useState([])
+  const nav = useNavigate()
+  if(!userToken) {
+    toast.success(`Please login first`);
+    nav('/login')
+  }
   const getOrders = () => {
     axios
       .get(

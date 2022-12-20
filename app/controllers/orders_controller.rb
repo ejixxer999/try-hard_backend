@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
     end
 
     def index 
-        render json: { orders: Order.all.map{|order| {id: order.id, amount: order.amount, order_products: order.orders_products.map{|order_product| {name: order_product.product.name, quantity: order_product.quantity, price: order_product.product.price}}}} }
+        render json: { orders: Order.where(user_id: @current_user.id).map{|order| {id: order.id, amount: order.amount, order_products: order.orders_products.map{|order_product| {name: order_product.product.name, quantity: order_product.quantity, price: order_product.product.price}}}} }
     end 
 
     def show
