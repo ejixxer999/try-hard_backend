@@ -5,8 +5,7 @@ class OrdersController < ApplicationController
     end
 
     def index 
-        orders = current_user.orders
-        render json: orders
+        render json: { orders: Order.where(user_id: @current_user.id).map{|order| {id: order.id, amount: order.amount, order_products: order.orders_products.map{|order_product| {name: order_product.product.name, quantity: order_product.quantity, price: order_product.product.price}}}} }
     end 
 
     def show
@@ -37,7 +36,7 @@ class OrdersController < ApplicationController
     private
 
     def order_params
-        params.require(:order).permit(:amount, :orders_products_attributes => [:product_id])
+        params.require(:order).permit(:amount, :orders_products_attributes => [:product_id, :quantity])
     end
 
 end 

@@ -12,6 +12,7 @@ import { UIProvider } from "../context/context";
 import { ToastContainer } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
+import Orders from "./orders";
 
 /** to add user past orders, and update quanity */
 /** code to dream */
@@ -27,7 +28,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
-          {/* <Route path="/cart" element={<Cart />} /> */}
+          <Route path="/orders" element={<Orders />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
