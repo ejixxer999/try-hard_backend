@@ -3,9 +3,12 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import PersonIcon from "@mui/icons-material/Person"
 import { TheList } from "../../styles/Nav"
 import { useUIContext } from "../../context/context"
+import { useNavigate } from "react-router-dom"
 
 export default function Actions() {
     const { cart, setShowCart } = useUIContext()
+
+   
     return (
         
 

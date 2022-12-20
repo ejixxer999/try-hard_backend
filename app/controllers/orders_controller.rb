@@ -5,7 +5,8 @@ class OrdersController < ApplicationController
     end
 
     def index 
-        render json: Order.all
+        orders = current_user.orders
+        render json: orders
     end 
 
     def show

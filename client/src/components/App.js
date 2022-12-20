@@ -13,8 +13,11 @@ import { ToastContainer } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 
+/** to add user past orders, and update quanity */
+/** code to dream */
+
 function App() {
-  
+
 
   return (
     <UIProvider>
