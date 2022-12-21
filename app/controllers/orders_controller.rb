@@ -15,7 +15,6 @@ class OrdersController < ApplicationController
         else
             render json: {error: "Order not found"}, status: :not_found
         end
-
     end 
 
     def create 
