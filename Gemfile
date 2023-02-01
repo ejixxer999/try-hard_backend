@@ -19,7 +19,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
-gem 'bundler', '~> 2.2.3'
+
 
 # Use Active Storage variant
  gem 'image_processing', '~> 1.2'
