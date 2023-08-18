@@ -38,7 +38,7 @@ function Shop() {
         justifyContent={"center"}
         sx={{ margin: "20px 4px 10px 4px" }}
       >
-        {productCards}
+        {productCards}, hello world! this is the windows computer.
       </Grid>
     </Container>
   );
